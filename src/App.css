@@ -1,0 +1,256 @@
+* {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+}
+.navbaritems {
+  background-color: #282120;
+  color: #fad02c;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1;
+}
+button {
+  color: rgb(255, 21, 0);
+  background-color: #fad02c;
+  text-align: center;
+  font-size: 32px;
+  padding: 16px;
+  transition: all 0.5s;
+  cursor: pointer;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
+  display: inline-block;
+  position: relative;
+  transition: 0.3s;
+  z-index: 0;
+  border-radius: 10px;
+}
+button:hover {
+  /* color: rgb(1, 104, 1,0.9); */
+  background-color: #ffcc00ab;
+  transition: 0.3s;
+  margin-left: 1px;
+}
+input[type="email"],input[type="text"],input[type="password"] {
+  background-color: rgb(244, 244, 244);
+  padding-left: 16px;
+  height: 36px;
+  border-width: 1px;
+}
+input[type="text"]:focus{
+  border-color: green;
+}
+
+button:after {
+  content: ">>";
+  position: absolute;
+  opacity: 0;
+  right: -0px;
+  transition: 0.3s;
+}
+button:hover:after {
+  opacity: 1;
+  right: 10px;
+}
+.lo:hover {
+  background-color: blue;
+}
+li {
+  text-decoration: none;
+  list-style-type: none;
+  line-height: 40px;
+  border-bottom: solid;
+  width: 150px;
+  border-color: #fad02c;
+  color: white;
+  margin-left: 8px;
+  margin-right: 8px;
+  border-radius: 5px;
+}
+li:hover {
+  /* background-color: yellow; */
+  cursor: pointer;
+  margin-left: 12px;
+  transition: 0.3s;
+  color: #fad02c;
+  border-radius: 5px;
+  height: -2px;
+}
+.links {
+  text-decoration: none;
+  font-weight: bold;
+  color: #fad02c;
+}
+.links:hover {
+  color: white;
+}
+.boxforitem {
+  border: solid;
+  border-width: 5px;
+  border-color: #d3d3d3;
+  width: 260px;
+  height: 369px;
+  margin-top: 15px;
+}
+.boxforitem:hover {
+  margin-top: 14px;
+  transition: 0.1s;
+  cursor: pointer;
+  background-color: rgb(255, 255, 239);
+}
+
+/* ............ Signup Part ..........*/
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.registration_form {
+  /* background: #282120; */
+  padding: 25px;
+  border-radius: 13px;
+  width: 400px;
+  border: solid;
+  border-color: #282120;
+  border-width: 1px;
+}
+
+.registration_form .title {
+  text-align: center;
+  font-size: 20px;
+  text-transform: uppercase;
+  /* color: #FAD02C; */
+  letter-spacing: 5px;
+  font-weight: 700;
+}
+
+.form_wrap {
+  margin-top: 35px;
+}
+
+.form_wrap .input_wrap {
+  margin-bottom: 15px;
+}
+
+.form_wrap .input_wrap:last-child {
+  margin-bottom: 0;
+}
+
+.form_wrap .input_wrap label {
+  display: block;
+  margin-bottom: 3px;
+  /* color: #FAD02C; */
+}
+
+.form_wrap .input_grp {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form_wrap .input_grp input[type="text"] {
+  width: 165px;
+}
+
+.form_wrap input[type="text"],input[type="email"],input[type="password"] {
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #9597a6;
+  padding: 10px;
+  outline: none;
+}
+
+.form_wrap input[type="text"]:focus {
+  border-color: #ebd0ce;
+}
+.form_wrap input[type="email"]:focus {
+  border-color: #ebd0ce;
+}
+.form_wrap input[type="password"]:focus {
+  border-color: #ebd0ce;
+}
+
+.form_wrap ul {
+  background: #fff;
+  padding: 8px 10px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+}
+
+.form_wrap ul li:first-child {
+  margin-right: 15px;
+}
+
+.form_wrap ul .radio_wrap {
+  position: relative;
+  margin-bottom: 0;
+}
+
+.form_wrap ul .radio_wrap .input_radio {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+}
+
+.form_wrap ul .radio_wrap span {
+  display: inline-block;
+  font-size: 14px;
+  padding: 3px 20px;
+  border-radius: 3px;
+  color: #545871;
+}
+
+.form_wrap .input_radio:checked ~ span {
+  background: #ebd0ce;
+}
+
+.form_wrap .submit_btn {
+  width: 100%;
+  background: #ebd0ce;
+  padding: 10px;
+  border: 0;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  cursor: pointer;
+}
+
+.form_wrap .submit_btn:hover {
+  background: #ffd5d2;
+}
+#linkk:hover {
+  color: blue;
+}
+.deliveryPage {
+  margin-top: 80px;
+  display: flex;
+  margin-left: 20px;
+}
+.deliveryPage > :nth-child(1) {
+  width: 70%;
+}
+/* Delivery packages/ deliver page */
+.deliverypackageflex {
+  display: flex;
+  height: 50px;
+  width: 600px;
+}
+.deliverypackageflex:hover {
+  background-color: #fef5e5;
+  cursor: pointer;
+}
+.deliverypackage {
+  width: 300px;
+  padding: 10px;
+}
+
+.viewcartitems:hover {
+  cursor: pointer;
+}
