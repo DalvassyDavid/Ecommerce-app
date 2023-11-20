@@ -12,19 +12,19 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["http://localhost:3000","https://www.woodcarvingske.xyz"],
+    origin: ["http://localhost:3000", "https://www.woodcarvingske.xyz"],
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true,
   })
 );
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); 
-  res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Request-Private-Network", true);
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   res.header("Access-Control-Allow-Credentials", true);
+//   res.header("Access-Control-Request-Private-Network", true);
+//   next();
+// });
 
 const con = mysql.createConnection({
   host: "localhost",
@@ -107,21 +107,20 @@ app.post("/newcart", (req, res) => {
 });
 
 app.put("/cart/addunits/:id/:email", (req, res) => {
-  
   const query =
     "UPDATE cart SET quatity_ordered=CASE WHEN quatity_ordered < 10 THEN quatity_ordered+1 ELSE 10 END WHERE  (product_id=? AND email_address=?)";
-  con.query(query, [req.params.id,req.params.email], (err, data) => {
+  con.query(query, [req.params.id, req.params.email], (err, data) => {
     if (err) throw err;
     res.send(data);
   });
 });
 
 app.put("/cart/removeunits/:id/:email2", (req, res) => {
-  console.log(req.params.email2)
-  console.log(req.params.id)
+  console.log(req.params.email2);
+  console.log(req.params.id);
   const query =
     "UPDATE cart SET quatity_ordered=quatity_ordered-1 WHERE  product_id=? AND email_address=?";
-  con.query(query, [req.params.id,req.params.email2], (err, data) => {
+  con.query(query, [req.params.id, req.params.email2], (err, data) => {
     if (err) throw err;
     res.send(data);
   });
@@ -231,7 +230,26 @@ app.get("/clear", (req, res) => {
 });
 
 // order placement API's
+app.post("/orderaddition/:id", (req, res) => {
+  const order_no =
+    "ODR-" +
+    Math.floor(Math.random() * Date.now())
+      .toString(32)
+      .toUpperCase();
+  const dateToday = moment().format("lll");
+  const query = `INSERT INTO orders (f_name,l_name,email_address,phone_no,product_id,order_number,quatity_ordered,order_amount,order_placement_date, payment_status, payment_ref,order_payment_date, expected_delivery_date, delivery_location,delivery_status)  SELECT "${req.body.f_name}","${req.body.l_name}","${req.body.email_address}","${req.body.phone_no}",cart.product_id,"${order_no}",cart.quatity_ordered,cart.price,"${dateToday}","Unpaid","no_payment_ref","no_order_payment_date","${dateToday}","${req.body.location_link}","Pending" FROM cart WHERE cart.email_address=?`;
+  con.query(query,[req.params.id], (err, data) => {
+    res.send(data);
+  });
+  console.log(order_no);
+});
+app.get("/orderaddition2", (req, res) => {
+  const query = "UPDATE orders SET product_id='xxxx' WHERE product_id=1234";
+  con.query(query, (err, data) => {
+    res.send(data);
+  });
+});
 
 app.listen(port, () => {
-  console.log("Listening on port "+ port);
+  console.log("Listening on port " + port);
 });

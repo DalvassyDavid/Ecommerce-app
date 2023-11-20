@@ -12,6 +12,7 @@ import {
   loggedinStatusForNavbar,
 } from "./reusables/Fuctions";
 import axios from "axios";
+import Orderplacementmessage from "./pages/Orderplacementmessage";
 
 function Loggedin() {
   const [nameofloggedperson, setnameofloggedperson] = useState("");
@@ -38,6 +39,7 @@ function Loggedin() {
         <Route path="/itemdisplayed/:id" element={<ItemDisplayed />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/orderplacement" element={<Orderplacement />} />
+        <Route path="/orderplacementmessage" element={<Orderplacementmessage />} />
       </Routes>
     </div>
   );

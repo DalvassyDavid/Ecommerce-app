@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../reusables/Navbar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Orderplacementmessage from "./Orderplacementmessage";
 
 function Orderplacement(props) {
   let dollarUSLocale = Intl.NumberFormat("en-US");
@@ -10,6 +11,7 @@ function Orderplacement(props) {
   const [seconds, setSeconds] = useState(4);
   const [isActive, setisActive] = useState(false);
   const [counteraActive, setcounteraActive] = useState(true);
+  const [messageActive, setmessageActive] = useState(false);
   const [activeUserEmail, setactiveUserEmail] = useState("");
 
   // Gettting user_email from the active login session
@@ -17,13 +19,13 @@ function Orderplacement(props) {
     axios.get("http://localhost:8000").then((res) => {
       if (res.data.status === "success") {
         console.log(res.data);
-        setactiveUserEmail(res.data.user_id);
+        setactiveUserEmail(res.data.email_address);
       } else {
         setactiveUserEmail(false);
       }
     });
   }, [activeUserEmail]);
-  console.log(activeUserEmail);
+  // console.log(activeUserEmail);
 
   useEffect(() => {
     axios
@@ -81,18 +83,24 @@ function Orderplacement(props) {
     const newData = { ...data };
     newData[e.target.name] = e.target.value;
     setData(newData);
+    // console.log(data);
   };
-  console.log(data);
 
-  const handleAddOrderDetails = (e) => {
+  const handleAddOrderDetails = (e, id) => {
     e.preventDefault();
-    const data2 = { ...data, user_id: activeUserEmail };
-    console.log(data2);
+    // const data2 = { ...data, user_id: activeUserEmail };
+    // // console.log(data2);
+    // // console.log(data2.user_id);
+    // const data3 = cart.filter((item) => item.email_address === data2.user_id);
+    // axios
+    //   .post("http://localhost:8000/orderaddition/" + id, data2)
+    //   .then(setmessageActive(true));
+
+      setmessageActive(true)
   };
 
   return (
     <div>
-      {/* <Navbar /> */}
       <div className="deliveryPage">
         <div>
           <h4
@@ -353,7 +361,7 @@ function Orderplacement(props) {
                 borderColor: "white",
                 marginBottom: "10px",
               }}
-              onClick={handleAddOrderDetails}
+              onClick={(e, id) => handleAddOrderDetails(e, activeUserEmail)}
             >
               Complete Order Placement
             </button>
@@ -532,6 +540,9 @@ function Orderplacement(props) {
             />
           </div>
         </div>
+      </div>
+      <div style={{ position: "fixed", marginTop: "-830px", marginLeft:"347px" }}>
+       {messageActive?<Orderplacementmessage />:""} 
       </div>
     </div>
   );
