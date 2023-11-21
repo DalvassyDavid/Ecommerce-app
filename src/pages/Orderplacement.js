@@ -88,15 +88,15 @@ function Orderplacement(props) {
 
   const handleAddOrderDetails = (e, id) => {
     e.preventDefault();
-    // const data2 = { ...data, user_id: activeUserEmail };
-    // // console.log(data2);
-    // // console.log(data2.user_id);
-    // const data3 = cart.filter((item) => item.email_address === data2.user_id);
-    // axios
-    //   .post("http://localhost:8000/orderaddition/" + id, data2)
-    //   .then(setmessageActive(true));
+    const data2 = { ...data, user_id: activeUserEmail };
+    // console.log(data2);
+    // console.log(data2.user_id);
+    const data3 = cart.filter((item) => item.email_address === data2.user_id);
+    axios
+      .post("http://localhost:8000/orderaddition/" + id, data2)
+      .then(setmessageActive(true));
 
-      setmessageActive(true)
+      // setmessageActive(true)
   };
 
   return (
